@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hướng Dẫn Chiến Dịch Vitamin A - TTYT Khu Vực Xuân Lộc</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Times+New+Roman:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Import Google Generative AI Library -->
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/generative-ai": "https://esm.run/@google/generative-ai"
+        }
+      }
+    </script>
+    
+    <style>
+        body { 
+            font-family: 'Roboto', sans-serif; 
+            background: linear-gradient(to bottom, #0f172a, #1e293b);
+            color: #334155;
+            overflow-x: hidden;
+        }
+
+        /* Font cho văn bản hành chính */
+        .doc-font { font-family: 'Times New Roman', serif; }
+
+        /* Hiệu ứng kính */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        }
+
+        /* Hiệu ứng trôi */
+        .float-element { animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+
+        /* Hiệu ứng Chữ chuyển màu chuyên nghiệp */
+        .gradient-text-animate {
+            background: linear-gradient(to right, #0f766e 0%, #2563eb 25%, #0d9488 50%, #2563eb 75%, #0f766e 100%);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shine 4s linear infinite;
+        }
+        @keyframes shine { to { background-position: 200% center; } }
+
+        /* Sao rơi background */
+        .star-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; pointer-events: none; }
+        .star { position: absolute; top: 50%; left: 50%; height: 2px; background: linear-gradient(-45deg, #5f91ff, rgba(0, 0, 255, 0)); filter: drop-shadow(0 0 6px #699bff); animation: tail 3000ms ease-in-out infinite, shooting 3000ms ease-in-out infinite; }
+        .star::before, .star::after { content: ''; position: absolute; top: calc(50% - 1px); right: 0; height: 2px; background: linear-gradient(-45deg, rgba(0, 0, 255, 0), #5f91ff, rgba(0, 0, 255, 0)); border-radius: 100%; transform: translateX(50%) rotateZ(45deg); animation: shining 3000ms ease-in-out infinite; }
+        .star::after { transform: translateX(50%) rotateZ(-45deg); }
+        @keyframes tail { 0% { width: 0; } 30% { width: 100px; } 100% { width: 0; } }
+        @keyframes shining { 0% { width: 0; } 50% { width: 30px; } 100% { width: 0; } }
+        @keyframes shooting { 0% { transform: translateX(0); } 100% { transform: translateX(300px); } }
+
+        /* Chat styles */
+        .chat-bubble { max-width: 85%; padding: 12px 16px; border-radius: 20px; margin-bottom: 10px; font-size: 0.95rem; line-height: 1.6; animation: messageIn 0.3s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .user-bubble { background: linear-gradient(135deg, #0d9488, #0f766e); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+        .bot-bubble { background-color: #ffffff; color: #1e293b; align-self: flex-start; border-bottom-left-radius: 4px; border: 1px solid #e2e8f0; }
+        @keyframes messageIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .chat-scroll::-webkit-scrollbar { width: 6px; }
+        .chat-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+
+        /* Pill Icon Styles */
+        .pill-icon {
+            width: 40px; height: 20px; border-radius: 10px;
+            box-shadow: inset 0 -4px 6px rgba(0,0,0,0.2), 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .pill-icon::after {
+            content: ''; position: absolute; top: 2px; left: 5px; width: 15px; height: 6px;
+            background: rgba(255,255,255,0.4); border-radius: 4px;
+        }
+        .pill-red { background: linear-gradient(135deg, #ef4444, #b91c1c); }
+        .pill-blue { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+
+        /* Accordion */
+        .faq-item details > summary { list-style: none; }
+        .faq-item details > summary::-webkit-details-marker { display: none; }
+        .faq-item details[open] > summary i { transform: rotate(180deg); }
+        
+        /* Document Styles */
+        .doc-header { border-bottom: 1px solid #e2e8f0; padding-bottom: 20px; margin-bottom: 30px; }
+        .doc-title { text-align: center; font-weight: bold; margin-bottom: 10px; }
+        .doc-section-title { font-weight: bold; margin-top: 20px; margin-bottom: 10px; text-transform: uppercase; }
+        .doc-p { margin-bottom: 10px; text-align: justify; line-height: 1.6; }
+        .doc-ul { list-style-type: disc; padding-left: 25px; margin-bottom: 10px; }
+        .doc-li { margin-bottom: 5px; text-align: justify; }
+    </style>
+</head>
+<body class="h-screen flex flex-col relative">
+
+    <div class="star-bg" id="star-container"></div>
+
+    <!-- Header -->
+    <header class="glass-panel z-20 m-4 rounded-2xl border-0 bg-white/95">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-5">
+                <div class="bg-gradient-to-br from-teal-600 to-blue-600 p-3 rounded-2xl text-white shadow-lg shadow-teal-500/30 float-element">
+                    <i data-lucide="activity" class="w-10 h-10"></i>
+                </div>
+                <div class="flex flex-col">
+                    <h1 class="text-2xl md:text-3xl font-black uppercase tracking-wider gradient-text-animate leading-tight">
+                        TTYT KHU VỰC XUÂN LỘC
+                    </h1>
+                    <h2 class="text-lg md:text-xl font-bold uppercase tracking-wide text-teal-700 mt-1 flex items-center gap-2">
+                        <span class="w-8 h-0.5 bg-teal-500 inline-block"></span>
+                        ĐIỂM TRẠM XUÂN TRƯỜNG
+                    </h2>
+                    <p class="text-xs text-slate-500 font-medium mt-1 pl-10">Cổng Thông Tin & Hướng Dẫn Nghiệp Vụ</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-6">
+                <div class="text-right hidden md:block">
+                    <div id="real-time-clock" class="text-2xl font-bold text-slate-700 font-mono">00:00:00</div>
+                    <div id="real-time-date" class="text-xs text-slate-500 uppercase font-semibold">Thứ ..., ngày ...</div>
+                </div>
+                <div class="flex items-center gap-2 bg-green-50 px-4 py-2 rounded-full border border-green-200 shadow-sm">
+                    <span class="relative flex h-3 w-3">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                    </span>
+                    <span class="text-sm font-bold text-green-700">Online</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="flex flex-1 overflow-hidden px-4 pb-4 gap-4">
+        
+        <!-- Sidebar -->
+        <aside class="w-64 glass-panel rounded-2xl hidden md:flex flex-col z-10 p-4">
+            <div class="space-y-2">
+                <button onclick="switchTab('tong-quan')" id="nav-tong-quan" class="w-full flex items-center gap-3 px-4 py-3 bg-teal-50 text-teal-700 rounded-xl font-bold shadow-sm transition-all hover:shadow-md">
+                    <i data-lucide="file-text" class="w-5 h-5"></i>
+                    Tổng Quan (Văn bản)
+                </button>
+                <button onclick="switchTab('faq')" id="nav-faq" class="w-full flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-white hover:shadow-sm rounded-xl font-medium transition-all">
+                    <i data-lucide="help-circle" class="w-5 h-5 text-purple-500"></i>
+                    Câu Hỏi Thường Gặp
+                </button>
+            </div>
+
+            <!-- KHO VITAMIN A - SỬA ĐỔI: LOẠI BỎ SỐ LIỆU -->
+            <div class="mt-8">
+                <h3 class="text-xs font-bold text-slate-400 uppercase px-4 mb-4">Kho Vitamin A</h3>
+                <div class="bg-white/50 p-4 rounded-xl border border-slate-100 space-y-4">
+                    <div class="flex items-center gap-4 p-3 bg-red-50 rounded-lg border border-red-100 hover:bg-red-100 transition-colors cursor-pointer group">
+                        <div class="pill-icon pill-red group-hover:scale-110 transition-transform"></div>
+                        <span class="text-sm font-bold text-red-700">Viên Đỏ</span>
+                    </div>
+                    
+                    <div class="flex items-center gap-4 p-3 bg-blue-50 rounded-lg border border-blue-100 hover:bg-blue-100 transition-colors cursor-pointer group">
+                        <div class="pill-icon pill-blue group-hover:scale-110 transition-transform"></div>
+                        <span class="text-sm font-bold text-blue-700">Viên Xanh</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-auto pt-4 border-t border-slate-200/50">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-teal-700 text-white flex items-center justify-center font-bold shadow-md">ĐA</div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-700">Đức Anh</p>
+                        <p class="text-xs text-slate-500">Quản trị viên</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 glass-panel rounded-2xl p-6 overflow-y-auto relative scroll-smooth bg-slate-50/50">
+            
+            <!-- View: Tổng Quan (Văn bản hướng dẫn) -->
+            <div id="view-tong-quan" class="animate-[fadeIn_0.5s_ease-out]">
+                <div class="max-w-4xl mx-auto bg-white p-10 shadow-lg rounded-sm doc-font text-slate-900 border border-slate-200">
+                    
+                    <!-- Quốc hiệu tiêu ngữ -->
+                    <div class="flex justify-between mb-8">
+                        <div class="text-center font-bold">
+                            <p>SỞ Y TẾ ĐỒNG NAI</p>
+                            <p class="underline">TTYT KV XUÂN LỘC</p>
+                        </div>
+                        <div class="text-center font-bold">
+                            <p>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</p>
+                            <p class="underline">Độc lập – Tự do – Hạnh phúc</p>
+                        </div>
+                    </div>
+
+                    <!-- Tên văn bản -->
+                    <div class="text-center mb-10">
+                        <h1 class="text-2xl font-bold uppercase mb-2">HƯỚNG DẪN</h1>
+                        <h2 class="text-lg font-bold">Về Tổ chức thực hiện Chiến dịch bổ sung Vitamin A <br>cho trẻ từ 6 đến dưới 36 tháng tuổi</h2>
+                        <p class="italic text-sm mt-2">(Ban hành kèm theo Quyết định số 617/QĐ-VDD ngày 20 tháng 5 năm 2025 của Viện Dinh Dưỡng)</p>
+                    </div>
+
+                    <!-- Nội dung -->
+                    <div class="doc-content">
+                        <div class="doc-section">
+                            <h3 class="doc-section-title">I. VAI TRÒ CỦA VITAMIN A</h3>
+                            <p class="doc-p">Vitamin A: cần thiết cho chức năng nhìn, phát triển cơ thể, bảo vệ toàn vẹn của biểu mô và sự phân bào, miễn dịch:</p>
+                            <ul class="doc-ul">
+                                <li class="doc-li"><strong>Vai trò tăng trưởng:</strong> vitamin A có vai trò trong quá trình tăng trưởng, giúp cho trẻ phát triển bình thường.</li>
+                                <li class="doc-li"><strong>Chức năng thị giác:</strong> vitamin A tham gia vào chức năng nhìn của mắt. Dấu hiệu sớm của thiếu vitamin A là khả năng nhìn của mắt trong điều kiện ánh sáng yếu, còn được gọi là “Quáng gà”.</li>
+                                <li class="doc-li"><strong>Bảo vệ biểu mô:</strong> vitamin A cần thiết cho sự bảo vệ toàn vẹn của biểu mô như giác mạc mắt, các tổ chức biểu mô dưới da, khí quản, các tuyến nước bọt, ruột non, tinh hoàn,... Vì vậy khi thiếu vitamin A sẽ xuất hiện khô da, sừng hóa, và các tổn thương ở mắt được gọi là “Khô mắt”.</li>
+                                <li class="doc-li"><strong>Miễn dịch cơ thể:</strong> vitamin A tham gia vào quá trình đáp ứng miễn dịch cơ thể, làm tăng khả năng đề kháng của cơ thể đối với bệnh tật.</li>
+                            </ul>
+                        </div>
+
+                        <div class="doc-section">
+                            <h3 class="doc-section-title">II. ĐỐI TƯỢNG VÀ LIỀU DÙNG</h3>
+                            <h4 class="font-bold mb-2">1. Đối tượng:</h4>
+                            <ul class="doc-ul">
+                                <li class="doc-li">Trẻ em từ 6 tháng đến dưới 36 tháng tuổi và các đối tượng có nguy cơ cao thiếu vitamin A (sởi, suy dinh dưỡng cấp tính nặng, viêm đường hô hấp cấp tính, tiêu chảy kéo dài).</li>
+                                <li class="doc-li"><strong>Cách tính tuổi:</strong> Trẻ em từ 6 tháng đến dưới 36 tháng tuổi được tính từ khi trẻ tròn 6 tháng đến 35 tháng và 29 ngày tuổi.</li>
+                            </ul>
+                            
+                            <h4 class="font-bold mb-2 mt-4">2. Liều dùng:</h4>
+                            <p class="font-bold italic mb-1">2.1. Liều bổ sung vitamin A trong chiến dịch.</p>
+                            <p class="doc-p">Theo khuyến cáo của Tổ chức Y tế thế giới (WHO) năm 2011 về bổ sung Vitamin A cho đối tượng trẻ em từ 6 tháng đến dưới 36 tháng tuổi như sau:</p>
+                            <ul class="doc-ul">
+                                <li class="doc-li">Trẻ từ 6 tháng đến dưới 12 tháng tuổi: Uống 1 viên 100.000 IU/lần, liều duy nhất, uống 4-6 tháng/lần.</li>
+                                <li class="doc-li">Trẻ từ 12 tháng đến dưới 36 tháng tuổi: Uống 1 viên 200.000 IU/lần, uống 4-6 tháng/lần.</li>
+                            </ul>
+
+                            <p class="font-bold italic mb-1 mt-3">2.2. Liều bổ sung vitamin A cho đối tượng có nguy cơ cao thiếu vitamin A</p>
+                            <ul class="doc-ul">
+                                <li class="doc-li">Trẻ em và người mắc bệnh sởi bổ sung vitamin A theo quyết định 1019/QĐ-BYT ngày 26/03/2025 của Bộ Y tế. Nếu trẻ đã được uống vitamin A theo chiến dịch trong vòng 1 tháng trước thì liều đó được tính là liều đầu tiên.</li>
+                                <li class="doc-li">Trẻ từ 0 đến dưới 72 tháng tuổi suy dinh dưỡng cấp tính nặng được bổ sung vitamin A theo Quyết định 4487/QĐ-BYT ngày 18/8/2016.</li>
+                                <li class="doc-li">Trẻ từ 6 đến dưới 60 tháng tuổi mắc tiêu chảy kéo dài hoặc viêm đường hô hấp cấp tính được bổ sung thêm 1 liều vitamin A theo độ tuổi (cách liều gần nhất tối thiểu 1 tháng).</li>
+                            </ul>
+                        </div>
+
+                        <div class="doc-section">
+                            <h3 class="doc-section-title">III. CHỐNG CHỈ ĐỊNH</h3>
+                            <ul class="doc-ul">
+                                <li class="doc-li">Trẻ đang đau bụng, sốt cao (>38,5°C).</li>
+                                <li class="doc-li">Đang bị các bệnh mãn tính như: tâm thần, suy thận, tim, gan, hen phế quản (cần tư vấn bác sĩ).</li>
+                                <li class="doc-li">Có tiền sử dị ứng với các thành phần của thuốc.</li>
+                                <li class="doc-li">Phụ nữ có thai.</li>
+                            </ul>
+                        </div>
+
+                        <div class="doc-section">
+                            <h3 class="doc-section-title">IV. BẢO QUẢN VIÊN NANG VITAMIN A</h3>
+                            <ul class="doc-ul">
+                                <li class="doc-li">Viên nang Vitamin A cần được bảo quản trong lọ đóng kín, ở nơi khô ráo, thoáng mát, tránh ánh sáng, tránh nhiệt độ trên 30°C và độ ẩm trên 65%.</li>
+                                <li class="doc-li">Luôn đậy nắp lọ kín khi không dùng đến. Để tránh xa tầm tay trẻ em.</li>
+                                <li class="doc-li">Kiểm tra định kỳ, hủy thuốc hỏng/quá hạn theo quy định.</li>
+                            </ul>
+                        </div>
+
+                        <div class="doc-section">
+                            <h3 class="doc-section-title">V. KỸ THUẬT CHO UỐNG VITAMIN A</h3>
+                            <ul class="doc-ul">
+                                <li class="doc-li"><strong>Đối với trẻ dưới 24 tháng tuổi:</strong> Dùng kéo cắt đầu núm của viên nang rồi bóp dịch Vitamin A vào miệng trẻ, sau đó cho trẻ uống một thìa nước tráng miệng.</li>
+                                <li class="doc-li"><strong>Đối với trẻ từ 24 tháng tuổi trở lên:</strong> Cho trẻ nhai hoặc nuốt viên nang rồi cho uống nước.</li>
+                                <li class="doc-li bg-yellow-50 p-2 border-l-4 border-yellow-500"><strong>Trường hợp uống ½ viên:</strong> Đối với trẻ từ 6 tháng đến dưới 12 tháng tuổi, nếu phải dùng viên nang 200.000UI thì cho trẻ uống một nửa viên (3-4 giọt). Cần sắp xếp cho 2 trẻ uống chung 1 viên.</li>
+                                <li class="doc-li"><strong>Đảm bảo vệ sinh:</strong> Người cho uống cần đeo găng tay, khử trùng kéo.</li>
+                            </ul>
+                        </div>
+
+                        <div class="doc-section">
+                            <h3 class="doc-section-title">VI. ĐẢM BẢO AN TOÀN KHI DÙNG VIÊN NANG VITAMIN A</h3>
+                            <ul class="doc-ul">
+                                <li class="doc-li">Viên nang của chương trình an toàn. Tác dụng phụ (buồn nôn, đau đầu) thường tự hết sau 48h.</li>
+                                <li class="doc-li">Kiểm tra hạn sử dụng, tính nguyên vẹn của viên nang trước khi cho uống.</li>
+                                <li class="doc-li">Không dùng quá liều quy định.</li>
+                            </ul>
+                        </div>
+
+                        <div class="doc-section">
+                            <h3 class="doc-section-title">VII. THEO DÕI SAU NGÀY UỐNG VITAMIN A</h3>
+                            <p class="doc-p">Cần theo dõi sát sao để phát hiện và xử lý tác dụng phụ.</p>
+                            <ul class="doc-ul">
+                                <li class="doc-li"><strong>Người chăm sóc trẻ:</strong> Theo dõi đau bụng, nôn mửa. Nếu nôn liên tục, dị ứng cần đưa đến cơ sở y tế.</li>
+                                <li class="doc-li"><strong>Trạm Y tế xã/thị trấn:</strong> Cử cán bộ trực 24/24 giờ trong 2 ngày sau khi uống. Theo dõi sức khỏe trẻ sau 4 ngày.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View: FAQ (Câu hỏi thường gặp) -->
+            <div id="view-faq" class="hidden space-y-6 max-w-5xl mx-auto animate-[fadeIn_0.5s_ease-out]">
+                <div class="bg-gradient-to-r from-purple-600 to-indigo-600 rounded-3xl p-8 text-white shadow-xl relative overflow-hidden">
+                    <div class="relative z-10">
+                        <h2 class="text-3xl font-extrabold mb-2">CÁC CÂU HỎI THƯỜNG GẶP</h2>
+                        <p class="text-purple-100 text-lg">Giải đáp thắc mắc về Vitamin A theo hướng dẫn mới nhất.</p>
+                    </div>
+                    <i data-lucide="message-circle-question" class="absolute -bottom-6 -right-6 w-48 h-48 text-white opacity-20"></i>
+                </div>
+
+                <div class="grid grid-cols-1 gap-4">
+                    <!-- Câu 1 -->
+                    <div class="faq-item bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                        <details class="group">
+                            <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-5 bg-slate-50 hover:bg-slate-100 transition-colors">
+                                <span class="text-lg text-slate-800">Câu 1: Vitamin A là gì? Tầm quan trọng của vitamin A</span>
+                                <i data-lucide="chevron-down" class="transition-transform duration-300 w-5 h-5 text-slate-500"></i>
+                            </summary>
+                            <div class="text-slate-600 p-5 pt-2 leading-relaxed border-t border-slate-100">
+                                <p>Vitamin A là vi chất thiết yếu đối với sinh lý tự nhiên của cơ thể, thuộc nhóm vitamin tan trong chất béo (dầu). Cơ thể không thể tự tổng hợp vitamin A mà cần được bổ sung thông qua nguồn thực phẩm hàng ngày.</p>
+                                <ul class="list-disc pl-5 mt-2">
+                                    <li>Vitamin A giúp bảo vệ đôi mắt.</li>
+                                    <li>Vitamin A hỗ trợ hệ thống miễn dịch khỏe mạnh.</li>
+                                    <li>Vitamin A có thể giải quyết một số vấn đề về da như ngăn ngừa lão hóa sớm, thúc đẩy tái tạo tế bào, giảm nếp nhăn, chống lại tác hại từ tia UV.</li>
+                                    <li>Vitamin A hỗ trợ sức khỏe xương.</li>
+                                </ul>
+                            </div>
+                        </details>
+                    </div>
+
+                    <!-- Câu 2 -->
+                    <div class="faq-item bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                        <details class="group">
+                            <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-5 bg-slate-50 hover:bg-slate-100 transition-colors">
+                                <span class="text-lg text-slate-800">Câu 2: Cách bảo quản vitamin A</span>
+                                <i data-lucide="chevron-down" class="transition-transform duration-300 w-5 h-5 text-slate-500"></i>
+                            </summary>
+                            <div class="text-slate-600 p-5 pt-2 leading-relaxed border-t border-slate-100">
+                                Cách bảo quản vitamin A là: bảo quản nơi khô ráo, thoáng mát, tránh ánh sáng, độ ẩm không vượt quá 65%, ở nhiệt độ không quá 30ºC. Để thuốc tránh xa tầm tay của trẻ em.
+                            </div>
+                        </details>
+                    </div>
+
+                    <!-- Câu 3 -->
+                    <div class="faq-item bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden border-l-4 border-l-red-500">
+                        <details class="group" open>
+                            <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-5 bg-red-50 hover:bg-red-100 transition-colors">
+                                <span class="text-lg text-red-800">Câu 3: Cách cho trẻ uống Vitamin A</span>
+                                <i data-lucide="chevron-down" class="transition-transform duration-300 w-5 h-5 text-red-500"></i>
+                            </summary>
+                            <div class="text-slate-600 p-5 pt-2 leading-relaxed border-t border-red-100">
+                                <p>Đối với trẻ dưới 12 tháng tuổi, sử dụng vitamin A viên màu đỏ 200.000IU:</p>
+                                <ul class="list-disc pl-5 mb-2">
+                                    <li>Cắt ở <strong>đầu núm</strong>, sẽ được <strong>04 giọt</strong>.</li>
+                                    <li>Nếu cắt ở <strong>giữa đầu núm</strong> sẽ được <strong>03 giọt</strong>.</li>
+                                </ul>
+                                <p class="bg-yellow-50 p-2 text-yellow-800 rounded">Khi cho trẻ dưới 12 tháng tuổi sử dụng Vitamin A sử dụng viên màu đỏ 200.000IU thì phải xếp 02 trẻ gần nhau để uống. Còn nếu chỉ có 01 trẻ uống viên 200.000IU thì phần dư còn lại <strong>không được để bà mẹ uống</strong>.</p>
+                            </div>
+                        </details>
+                    </div>
+
+                    <!-- Câu 4 -->
+                    <div class="faq-item bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                        <details class="group">
+                            <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-5 bg-slate-50 hover:bg-slate-100 transition-colors">
+                                <span class="text-lg text-slate-800">Câu 4. Chống chỉ định</span>
+                                <i data-lucide="chevron-down" class="transition-transform duration-300 w-5 h-5 text-slate-500"></i>
+                            </summary>
+                            <div class="text-slate-600 p-5 pt-2 leading-relaxed border-t border-slate-100">
+                                <ul class="list-disc pl-5">
+                                    <li>Trẻ đang đau bụng, sốt cao (>38,5°C).</li>
+                                    <li>Đang bị các bệnh mãn tính như: tâm thần, suy thận, tim, gan, hen phế quản. Những trường hợp này sau khi điều trị ổn định bệnh sẽ cần tư vấn của các bác sỹ nên được uống hay không.</li>
+                                    <li>Có tiền sử dị ứng với các thành phần của thuốc.</li>
+                                </ul>
+                            </div>
+                        </details>
+                    </div>
+
+                    <!-- Câu 5 -->
+                    <div class="faq-item bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                        <details class="group">
+                            <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-5 bg-slate-50 hover:bg-slate-100 transition-colors">
+                                <span class="text-lg text-slate-800">Câu 5. Những đối tượng nào thiếu Vitamin A cần được bổ sung</span>
+                                <i data-lucide="chevron-down" class="transition-transform duration-300 w-5 h-5 text-slate-500"></i>
+                            </summary>
+                            <div class="text-slate-600 p-5 pt-2 leading-relaxed border-t border-slate-100">
+                                <ul class="list-disc pl-5">
+                                    <li>Những trẻ và người lớn bị mắc sởi.</li>
+                                    <li>Những trẻ bị viêm đường hô hấp cấp tính.</li>
+                                    <li>Những trẻ bị tiêu chảy kéo dài (đối với Trẻ từ 6 đến dưới 60 tháng tuổi).</li>
+                                    <li>Những trẻ bị suy dinh dưởng cấp tính nặng (Cân nặng/chiều cao từ -3SD đến -2SD đối với trẻ từ 0 đến dưới 72 tháng tuổi).</li>
+                                </ul>
+                            </div>
+                        </details>
+                    </div>
+
+                    <!-- Câu 6 -->
+                    <div class="faq-item bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                        <details class="group">
+                            <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-5 bg-slate-50 hover:bg-slate-100 transition-colors">
+                                <span class="text-lg text-slate-800">Câu 6. Dấu hiệu của Ngộ độc và xử trí</span>
+                                <i data-lucide="chevron-down" class="transition-transform duration-300 w-5 h-5 text-slate-500"></i>
+                            </summary>
+                            <div class="text-slate-600 p-5 pt-2 leading-relaxed border-t border-slate-100">
+                                <ul class="list-disc pl-5">
+                                    <li>Tác dụng phụ thoáng qua như đau bụng, nhức đầu nhẹ sẽ tự mất đi sau ít giờ.</li>
+                                    <li>Tác dụng phụ có biểu hiện nhiều hơn như đau bụng nhiều, nôn mửa liên tục, dị ứng cần đưa trẻ đến cơ sở y tế.</li>
+                                </ul>
+                            </div>
+                        </details>
+                    </div>
+
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Chatbot Widget -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        <div id="chat-interface" class="bg-white w-[380px] h-[550px] rounded-2xl shadow-2xl border border-slate-100 flex flex-col hidden overflow-hidden transition-all duration-300 origin-bottom-right transform scale-95 opacity-0">
+            <div class="bg-gradient-to-r from-teal-600 to-cyan-600 p-4 text-white flex justify-between items-center shadow-md">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center relative shadow-sm">
+                        <i data-lucide="bot" class="w-6 h-6 text-teal-600"></i>
+                        <span class="absolute -bottom-1 -right-1 flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-green-500 border-2 border-white"></span></span>
+                    </div>
+                    <div><h3 class="font-bold text-sm">Trợ lý AI Xuân Trường</h3><p class="text-xs text-teal-100">Powered by Gemini ✨</p></div>
+                </div>
+                <button onclick="toggleChat()" class="hover:bg-white/20 p-1 rounded-lg transition-colors"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <div id="chat-messages" class="flex-1 bg-slate-50 p-4 overflow-y-auto chat-scroll flex flex-col">
+                <div class="bot-bubble bg-white shadow-sm">Xin chào! Tôi có thể giúp gì về Hướng dẫn chiến dịch Vitamin A? Tôi sẽ trả lời dựa trên văn bản hướng dẫn bạn cung cấp.<br><span class="text-xs text-slate-400 italic mt-1 block">Ví dụ: Liều dùng cho trẻ 18 tháng? Chống chỉ định?</span></div>
+            </div>
+            <div class="p-4 bg-white border-t border-slate-100">
+                <form onsubmit="handleChatSubmit(event)" class="relative">
+                    <input type="text" id="user-input" class="w-full bg-slate-100 pl-4 pr-12 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 text-sm text-slate-700 font-medium" placeholder="Nhập câu hỏi...">
+                    <button type="submit" id="send-btn" class="absolute right-2 top-2 bg-teal-600 text-white p-1.5 rounded-lg shadow hover:bg-teal-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"><i data-lucide="send" class="w-4 h-4"></i></button>
+                </form>
+            </div>
+        </div>
+        <button onclick="toggleChat()" id="chat-toggle-btn" class="mt-4 w-16 h-16 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-full shadow-2xl shadow-teal-500/40 text-white flex items-center justify-center hover:scale-110 transition-transform duration-300 group"><i data-lucide="message-circle" class="w-8 h-8 group-hover:rotate-12 transition-transform"></i></button>
+    </div>
+
+    <script type="module">
+        import { GoogleGenerativeAI } from "@google/generative-ai";
+
+        // --- GEMINI CONFIGURATION ---
+        const apiKey = ""; // System will inject key
+        let genAI, model;
+        
+        try {
+            if (apiKey) {
+                genAI = new GoogleGenerativeAI(apiKey);
+                model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-preview-09-2025" });
+            }
+        } catch (e) { console.error("Gemini Error:", e); }
+
+        // --- DATA CONTENT FROM GOOGLE DOC (SIMULATED FETCH) ---
+        // Nội dung này được lấy từ văn bản bạn đã cung cấp (tương đương nội dung file Google Doc)
+        const googleDocContent = `
+            HƯỚNG DẪN Về Tổ chức thực hiện Chiến dịch bổ sung Vitamin A cho trẻ từ 6 đến dưới 36 tháng tuổi (Ban hành kèm theo Quyết định số 617/QĐ-VDD ngày 20 tháng 5 năm 2025 của Viện Dinh Dưỡng).
+            
+            I. VAI TRÒ CỦA VITAMIN A:
+            Vitamin A: cần thiết cho chức năng nhìn, phát triển cơ thể, bảo vệ toàn vẹn của biểu mô và sự phân bào, miễn dịch.
+            
+            II. ĐỐI TƯỢNG VÀ LIỀU DÙNG:
+            1. Đối tượng: Trẻ em từ 6 tháng đến dưới 36 tháng tuổi và các đối tượng có nguy cơ cao thiếu vitamin A.
+            2. Liều dùng:
+            - Trẻ từ 6 tháng đến dưới 12 tháng tuổi: Uống 1 viên 100.000 IU/lần (Viên xanh hoặc 1/2 viên đỏ).
+            - Trẻ từ 12 tháng đến dưới 36 tháng tuổi: Uống 1 viên 200.000 IU/lần (Viên đỏ).
+            
+            III. CHỐNG CHỈ ĐỊNH:
+            - Trẻ đang đau bụng, sốt cao (>38,5°C).
+            - Bệnh mãn tính cần tư vấn bác sĩ.
+            
+            IV. BẢO QUẢN:
+            - Nơi khô ráo, thoáng mát, nhiệt độ < 30 độ C, độ ẩm < 65%.
+            
+            V. KỸ THUẬT CHO UỐNG:
+            - Trẻ < 24 tháng: Cắt đầu núm bóp vào miệng.
+            - Trường hợp uống 1/2 viên (Viên đỏ 200.000IU cho trẻ 6-12 tháng): Cắt đầu núm được 4 giọt, cắt giữa núm được 3 giọt. PHẢI sắp xếp 2 trẻ uống chung 1 viên.
+            
+            VI. AN TOÀN:
+            - Tác dụng phụ (buồn nôn, đau đầu) thường tự hết sau 48h.
+            
+            VII. THEO DÕI:
+            - Theo dõi sát sao trong 2 ngày sau uống. Nếu nôn nhiều, dị ứng thì đưa đi viện.
+        `;
+
+        // --- CHATBOT LOGIC ---
+        // Sử dụng nội dung văn bản làm "Kiến thức nền" cho AI
+        const systemPrompt = `
+            Bạn là Trợ lý AI Y tế của TTYT Xuân Lộc. 
+            Nhiệm vụ của bạn là trả lời các câu hỏi dựa trên nội dung văn bản hướng dẫn sau đây:
+            
+            """
+            ${googleDocContent}
+            """
+            
+            Hãy trả lời ngắn gọn, chính xác, giọng văn chuyên nghiệp, ân cần. Nếu câu hỏi không có trong văn bản, hãy nói bạn không tìm thấy thông tin trong hướng dẫn.
+        `;
+        
+        window.handleChatSubmit = async (e) => {
+            e.preventDefault();
+            const inputEl = document.getElementById('user-input');
+            const btnEl = document.getElementById('send-btn');
+            const message = inputEl.value.trim();
+            if (!message) return;
+
+            addMessage(message, 'user');
+            inputEl.value = '';
+            btnEl.disabled = true;
+            const loadingId = addLoading();
+
+            try {
+                let replyText = "";
+                if (model) {
+                    // Gọi Gemini API thật
+                    const result = await model.generateContent(`${systemPrompt}\nNgười dùng hỏi: ${message}\nAI trả lời:`);
+                    replyText = result.response.text();
+                } else {
+                    // Fallback nếu chưa có API key (Chế độ demo)
+                    await new Promise(r => setTimeout(r, 1000));
+                    replyText = "Hệ thống AI đang ở chế độ demo. Bạn vui lòng đọc kỹ hướng dẫn ở tab 'Tổng quan' để có thông tin chính xác nhất về liều dùng và cách bảo quản nhé.";
+                }
+                removeLoading(loadingId);
+                addMessage(formatText(replyText), 'bot');
+            } catch (error) {
+                removeLoading(loadingId);
+                addMessage("Xin lỗi, tôi đang gặp sự cố kết nối. Vui lòng thử lại sau.", 'bot');
+            } finally {
+                btnEl.disabled = false;
+                inputEl.focus();
+            }
+        };
+
+        // --- UTILITIES ---
+        function addMessage(html, sender) {
+            const container = document.getElementById('chat-messages');
+            const div = document.createElement('div');
+            div.className = `chat-bubble ${sender === 'user' ? 'user-bubble' : 'bot-bubble'}`;
+            div.innerHTML = html;
+            container.appendChild(div);
+            container.scrollTop = container.scrollHeight;
+        }
+        function addLoading() {
+            const container = document.getElementById('chat-messages');
+            const id = 'loading-' + Date.now();
+            const div = document.createElement('div');
+            div.id = id;
+            div.className = 'bot-bubble bg-white shadow-sm w-16 flex items-center justify-center py-4';
+            div.innerHTML = `<div class="flex space-x-1"><div class="w-2 h-2 bg-slate-400 rounded-full animate-bounce"></div><div class="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 0.1s"></div><div class="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div></div>`;
+            container.appendChild(div);
+            return id;
+        }
+        function removeLoading(id) { document.getElementById(id)?.remove(); }
+        function formatText(text) { return text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>'); }
+        
+        // --- NAVIGATION ---
+        window.switchTab = (tabName) => {
+            ['tong-quan', 'faq'].forEach(t => {
+                document.getElementById(`view-${t}`).classList.add('hidden');
+                document.getElementById(`nav-${t}`).className = "w-full flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-white hover:shadow-sm rounded-xl font-medium transition-all";
+            });
+            document.getElementById(`view-${tabName}`).classList.remove('hidden');
+            document.getElementById(`nav-${tabName}`).className = "w-full flex items-center gap-3 px-4 py-3 bg-teal-50 text-teal-700 rounded-xl font-bold shadow-sm transition-all hover:shadow-md";
+        }
+        
+        window.toggleChat = () => {
+            const ui = document.getElementById('chat-interface');
+            const btn = document.getElementById('chat-toggle-btn');
+            if(ui.classList.contains('hidden')) {
+                ui.classList.remove('hidden'); setTimeout(() => { ui.classList.remove('scale-95', 'opacity-0'); ui.classList.add('scale-100', 'opacity-100'); }, 10); btn.classList.add('hidden');
+            } else {
+                ui.classList.remove('scale-100', 'opacity-100'); ui.classList.add('scale-95', 'opacity-0'); setTimeout(() => { ui.classList.add('hidden'); btn.classList.remove('hidden'); }, 300);
+            }
+        };
+
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+        
+        // Star generation
+        const starContainer = document.getElementById('star-container');
+        for(let i=0; i<15; i++) {
+             const s = document.createElement('div'); s.className='star';
+             s.style.top=Math.random()*100+'%'; s.style.left=Math.random()*100+'%';
+             s.style.animationDuration=(Math.random()*2000+3000)+'ms';
+             s.style.animationDelay=(Math.random()*5000)+'ms';
+             starContainer.appendChild(s);
+        }
+        
+        // Clock
+        setInterval(() => {
+            const now = new Date();
+            document.getElementById('real-time-clock').innerText = now.toLocaleTimeString('vi-VN', {hour12: false});
+            document.getElementById('real-time-date').innerText = now.toLocaleDateString('vi-VN', {weekday: 'long', day: 'numeric', month: 'numeric', year: 'numeric'});
+        }, 1000);
+    </script>
+</body>
+</html>
